@@ -1,5 +1,8 @@
 package com.training.generics;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -98,5 +101,27 @@ public class GenericMethods {
 		}catch(Exception e) {
 			
 		}
+	}
+	
+	public String getTomorrowDate() {
+		String tomorrow = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			Date date = new Date();
+			String fday = sdf.format(date);
+			Calendar c = Calendar.getInstance();
+			//Setting the date to the given date
+		    c.setTime(sdf.parse(fday));
+			   
+			//Number of Days to add
+			c.add(Calendar.DAY_OF_MONTH, 1);  
+			//Date after adding the days to the given date
+			String newDate = sdf.format(c.getTime());  
+			//Displaying the new Date after addition of Days
+			tomorrow = newDate.substring(0,2);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return tomorrow;
 	}
 }
